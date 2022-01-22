@@ -1,10 +1,10 @@
-const Product = require("../models/product");
+const Product = require('../models/product');
 
 exports.getAddProduct = (req, res, next) => {
-  res.render("admin/edit-product", {
-    pageTitle: "Add Product",
-    path: "/admin/add-product",
-    editing: false,
+  res.render('admin/edit-product', {
+    pageTitle: 'Add Product',
+    path: '/admin/add-product',
+    editing: false
   });
 };
 
@@ -16,12 +16,12 @@ exports.postAddProduct = (req, res, next) => {
   const product = new Product(title, price, description, imageUrl);
   product
     .save()
-    .then((result) => {
+    .then(result => {
       // console.log(result);
-      console.log("Created Product");
-      res.redirect("/admin/products");
+      console.log('Created Product');
+      res.redirect('/admin/products');
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
     });
 };
