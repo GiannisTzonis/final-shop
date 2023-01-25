@@ -8,9 +8,8 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 
 const errorController = require("./controllers/error");
 const User = require("./models/user");
-
 const MONGODB_URI =
-  "mongodb+srv://tzon1s:fYBwyDgyZHPhfuMJ@cluster0.zrsgo65.mongodb.net/shop?retryWrites=true&w=majority";
+  "mongodb+srv://tzon1s:fYBwyDgyZHPhfuMJ@cluster0.zrsgo65.mongodb.net/?retryWrites=true&w=majority";
 
 const app = express();
 const store = new MongoDBStore({
@@ -54,21 +53,11 @@ app.use(authRoutes);
 
 app.use(errorController.get404);
 
+mongoose.set("strictQuery", false);
+
 mongoose
   .connect(MONGODB_URI)
   .then((result) => {
-    User.findOne().then((user) => {
-      if (!user) {
-        const user = new User({
-          name: "Fiji",
-          email: "fiji@test.com",
-          cart: {
-            items: [],
-          },
-        });
-        user.save();
-      }
-    });
     app.listen(3000);
   })
   .catch((err) => {
