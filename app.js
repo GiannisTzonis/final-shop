@@ -8,6 +8,7 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 
 const errorController = require("./controllers/error");
 const User = require("./models/user");
+
 const MONGODB_URI =
   "mongodb+srv://tzon1s:fYBwyDgyZHPhfuMJ@cluster0.zrsgo65.mongodb.net/?retryWrites=true&w=majority";
 
